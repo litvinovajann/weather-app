@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import service from "../services";
 const pageSize = 5;
 
-export default function CastPagination(cetCurrentCells) {
+export default function CastPagination({setCurrentCells,city}) {
     
   const [pagination, setPagination] = useState({
     count: 0,
@@ -12,8 +12,20 @@ export default function CastPagination(cetCurrentCells) {
   });
 
   useEffect(()=> {
-    service.getData({from:pagination.from, to:pagination.to});
-   }, [] ) 
+    service.getData({from:pagination.from, to:pagination.to, city: city})
+    .then((response) => {
+        setPagination({...pagination, count: response.count});
+        setCurrentCells(response.data)
+    })
+   
+    }, 
+    [pagination.from, pagination.to] ) 
+
+    const handlePageChange = (event,page) => {
+        const from = (page - 1) * pageSize;
+        const to = (page - 1) * pageSize + pageSize;
+        setPagination({...pagination, from:from, to:to})
+    }
   return (
     <>
     <Box 
@@ -24,7 +36,8 @@ export default function CastPagination(cetCurrentCells) {
     >
         <Pagination 
             color="primary"
-            count={4}
+            count={Math.ceil(pagination.count/pageSize)}
+            onChange={handlePageChange}
         />
      </Box>
     </>

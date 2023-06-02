@@ -1,29 +1,4 @@
 
-
-// const service = {
-//     getData:  () => {
-//          fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=b4d2fcaa3980ad9354201f7a7782a3dd")
-//         .then ( res => res.json())
-//           .then ((data) => {
-//             return {
-//                 count: data.length,
-//                 data: data
-//             }
-//           })
-//         }
-// }
-
-// const service = function() {
-//      fetch("https://ghibliapi.herokuapp.com/people")
-//     .then(response => {
-//     return response.json();
-// })} ;
-
-  // useEffect(() => {
-  //   fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=b4d2fcaa3980ad9354201f7a7782a3dd")
-  //   .then(res => res.json())
-  //   .then(data =>  setWeatherData(data))
-  //  }, []);
   function extractElementsInRange(obj, start, end) {
     const keys = Object.keys(obj);
     const extractedElements = {};
@@ -47,6 +22,8 @@
              key !== "type" && 
              key !== "base" &&
              key !== "icon" &&
+             key !== "name" &&
+             key !== "country" &&
              key !== "dt"   
            ) {
             newObj[key] = currentObj[key]
@@ -60,8 +37,8 @@
   }
 
 const service = {
-    getData: function({from,to}) {
-        fetch("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=b4d2fcaa3980ad9354201f7a7782a3dd")
+    getData: function({from,to,city}) {
+       return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=b4d2fcaa3980ad9354201f7a7782a3dd`)
         .then( function(response) {
             if(response.status !== 200) {
                 console.log("fetching issue" + response.status);
@@ -77,7 +54,6 @@ const service = {
                 data: setData(result, from, to),
                 count: Object.keys(result).length
             }
-            console.log(returnIt)
             return returnIt
         })
     }
