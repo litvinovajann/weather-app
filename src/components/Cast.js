@@ -12,7 +12,7 @@ import CastPagination from "./CastPagination";
 
 export default function Cast() { 
     const [currentCells, setCurrentCells] = useState([]); 
-    const city = "London,uk";
+    const [city, setCity] = useState("London, UK")
     return (
       <TableContainer  sx={{  minWidth: 400, maxWidth:800, my:5}} component={Paper}>
       <Table aria-label="simple table">
