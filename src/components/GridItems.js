@@ -4,8 +4,9 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
-export default function GridItems() {
 
+export default function GridItems({city,setCity}) {
+    
     const Item = styled(Paper)(({ theme }) => ({
       backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       ...theme.typography.body2,
@@ -16,21 +17,18 @@ export default function GridItems() {
     }));
     const gridItems = [
       {id:1, name: "London", searchName: "London,uk"},
-      {id:2, name: "Moscow", searchName: "Moscow,Russia"},
-      {id:3, name: "San Francisco", searchName: "London,uk"},
-      {id:4, name: "New York", searchName: "London,uk"},
-      {id:5, name: "Paris", searchName: "London,uk"},
-      {id:6, name: "Berlin", searchName: "London,uk"},
-      {id:7, name: "Munich", searchName: "London,uk"},
-      {id:8, name: "Barcelona", searchName: "London,uk"},
-      {id:9, name: "Saint Petersburg", searchName: "London,uk"},
-      {id:10, name: "Mexico", searchName: "London,uk"},
-      {id:10, name: "Kabul", searchName: "London,uk"},
-      {id:10, name: "Beijing", searchName: "London,uk"},
+      {id:2, name: "Moscow", searchName: "Moscow, Russia"},
+      {id:3, name: "San Francisco", searchName: "San Francisco, CA, USA"},
+      {id:4, name: "New York", searchName: "New York, NY, USA"},
+      {id:5, name: "Paris", searchName: "Paris, FR"},
+      {id:6, name: "Berlin", searchName: "Berlin, Germany"},
+      {id:7, name: "Munich", searchName: "Munich, Germany"},
+      {id:8, name: "Barcelona", searchName: "Barcelona, Spain"},
+      {id:9, name: "Saint Petersburg", searchName: "Saint Petersburg, Russia"},
+      {id:10, name: "Mexico", searchName: "Mexico, Mexico"},
+      {id:10, name: "Kabul", searchName: "Kabul, Afganistan"},
+      {id:10, name: "Beijing", searchName: "Beijing, China"},
     ]
-    const handleClick = function(event) {
-      console.log(event.target.getAttribute('searchName'))
-    }
     return (
           <Container fixed sx={{width:3/10}}>
           <Box sx={{marginTop: '40px', marginBottom:"40px"}}>
@@ -41,7 +39,7 @@ export default function GridItems() {
                   <Item
                     name={element.name}
                     searchName={element.searchName}
-                    onClick={handleClick}
+                    onClick={(event) => setCity(event.target.getAttribute('searchName'))}
                   > {element.name}</Item>
                   </Grid>
                 ))}
