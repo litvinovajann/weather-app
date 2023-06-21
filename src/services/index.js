@@ -24,7 +24,8 @@
              key !== "icon" &&
              key !== "name" &&
              key !== "country" &&
-             key !== "dt"   
+             key !== "dt" &&
+             key !=="all"
            ) {
             newObj[key] = currentObj[key]
             }
@@ -38,7 +39,8 @@
 
 const service = {
     getData: function({from,to,city}) {
-       return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=b4d2fcaa3980ad9354201f7a7782a3dd`)
+      // lat={lat}&lon={lon}&dt={time}
+       return fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=b4d2fcaa3980ad9354201f7a7782a3dd`)
         .then( function(response) {
             if(response.status !== 200) {
                 console.log("fetching issue" + response.status);
@@ -50,6 +52,7 @@ const service = {
               }
            })
         .then( function(result) {
+          //console.log(result)
             const returnIt = {
                 data: setData(result, from, to),
                 count: Object.keys(result).length

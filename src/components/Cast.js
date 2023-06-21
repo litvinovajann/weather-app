@@ -10,16 +10,16 @@ import Paper from '@mui/material/Paper';
 import TableFooter from '@mui/material/TableFooter';
 import CastPagination from "./CastPagination";
 
-export default function Cast() { 
+export default function Cast(props) { 
+    const city = props.city;
     const [currentCells, setCurrentCells] = useState([]); 
-    const city = "London,uk";
     return (
       <TableContainer  sx={{  minWidth: 400, maxWidth:800, my:5}} component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow> 
              <TableCell align="left" colSpan={5}>
-                   Weather in {city}
+                   Weather in {city} (°F)
               </TableCell>
            </TableRow> 
           <TableRow>

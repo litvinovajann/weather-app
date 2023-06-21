@@ -19,7 +19,7 @@ export default function CastPagination({setCurrentCells,city}) {
     })
    
     }, 
-    [pagination.from, pagination.to] ) 
+    [pagination.from, pagination.to, city] ) 
 
     const handlePageChange = (event,page) => {
         const from = (page - 1) * pageSize;
