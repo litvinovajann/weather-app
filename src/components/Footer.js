@@ -6,7 +6,7 @@ export default function Footer() {
     <>
             <div className="footer-container">
                 <Container maxWidth="lg">
-
+                © 2023 
                 </Container>
             </div>
 

@@ -1,14 +1,13 @@
-
+  import {transformObjectKeys} from "./dataOperations"
   function extractElementsInRange(obj, start, end) {
     const keys = Object.keys(obj);
     const extractedElements = {};
-  
     for (let i = start; i < end; i++) {
       const key = keys[i];
       extractedElements[key] = obj[key];
     }
-  
-    return extractedElements;
+    const renamedElements = transformObjectKeys(extractedElements);
+    return renamedElements;
   }
   function setData(data, from, to){
     const stack = [data];
@@ -25,6 +24,7 @@
              key !== "name" &&
              key !== "country" &&
              key !== "dt" &&
+             key !== "1h" &&
              key !=="all"
            ) {
             newObj[key] = currentObj[key]

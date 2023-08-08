@@ -14,8 +14,8 @@ export default function Cast(props) {
     const city = props.city;
     const [currentCells, setCurrentCells] = useState([]); 
     return (
-      <TableContainer  sx={{  minWidth: 400, maxWidth:800, my:5}} component={Paper}>
-      <Table aria-label="simple table">
+      <TableContainer className="cast-table"  sx={{  minWidth: 400, maxWidth:800, my:5}} component={Paper}>
+      <Table aria-label="simple table" className="weather-cast-area">
         <TableHead>
           <TableRow> 
              <TableCell align="left" colSpan={5}>
@@ -24,7 +24,7 @@ export default function Cast(props) {
            </TableRow> 
           <TableRow>
           {Object.keys(currentCells).map((key) => ( 
-               <TableCell align="center">{key}</TableCell>
+               <TableCell key={key} align="center">{key}</TableCell>
             )
           )}
           </TableRow>
@@ -33,7 +33,7 @@ export default function Cast(props) {
         <TableRow
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >   {Object.keys(currentCells).map((key) => ( 
-               <TableCell align="center">{currentCells[key]}</TableCell>
+               <TableCell key={key} align="center">{currentCells[key]}</TableCell>
                )
             )}
         </TableRow>
